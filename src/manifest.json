@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "Качать заблокированные раздачи с Kinozal.tv",
+  "version": "0.1",
+  "description": "Скачивай заблокированные раздачи с сайта Kinozal.tv",
+
+  "permissions" : [ "tabs", "notifications", "http://*/*", "https://*/*" ],
+
+  "background" : {
+    "scripts" : ["libs/jquery-1.11.2.js", "libs/utils.js" , "js/background/background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["http://kinozal.tv/*", "https://kinozal.tv/*"],
+      "js": ["libs/jquery-1.11.2.js", "js/injects/content_script.js"]
+    }
+  ]
+}

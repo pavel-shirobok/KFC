@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var coffee = require('gulp-coffee');
 var watch = require('gulp-watch');
+var stylus = require('gulp-stylus');
 
 var JS = [
     'src/coffee/**/*.coffee'
@@ -11,6 +12,7 @@ var MANIFEST = 'src/manifest.json'
 var LIBS  = 'src/libs/**/*.js';
 
 var IMG = 'src/images/**/*.*';
+var STYLUS = 'src/stylus/*.styl';
 
 gulp.task('kfr:coffee', function(){
     return gulp
@@ -23,6 +25,12 @@ gulp.task('kfr:libs', function(){
     return gulp
         .src(LIBS)
         .pipe(gulp.dest('build/libs'))
+})
+
+gulp.task('kfr:stylus', function(){
+    return gulp.src(STYLUS)
+        .pipe(stylus())
+        .pipe(gulp.dest('build/css'))
 })
 
 gulp.task('kfr:manifest', function(){
@@ -53,6 +61,12 @@ gulp.task('kfr:watch', function(){
     watch(IMG, function(){
         gulp.start('kfr:img')
     })
+
+    watch(STYLUS, function(){
+        gulp.start('kfr:stylus')
+    })
+
+    gulp.start('kfr:stylus');
 
     gulp.start('kfr:img');
 

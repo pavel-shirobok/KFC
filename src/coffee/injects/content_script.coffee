@@ -4,17 +4,19 @@ chrome.extension.onMessage.addListener (request)->
   onHash(request.hash) is request.isHash
 
 TABLE_PATCH = '
-  <tr>
-    <td style="width: 210px;" class="nw"><button style="margin-top:5px">Download</button></td>
-    <td><p style="margin-top:5px">Нажми и в буффер обмена скопируется магнет ссылка для скачивания этого торрента</p></td>
-  </tr>
+<div class="justify">
+  <div class="kfc_magnet_button" style="margin-bottom: 3px">
+    <div class="kfc_magnet_button_icon"></div>
+    <div class="kfc_magnet_button_label">Скопировать magnet-ссылку</div>
+  </div>
+</div>
 '
 
 onHash = (hash)->
   tablePatch = $( TABLE_PATCH )
 
   tablePatch
-    .appendTo 'table.w100p:first>tbody'
-    .find 'button'
+    .prependTo '.mn1_content'
+    .find '.kfc_magnet_button'
     .on 'click', ()->
       chrome.extension.sendMessage {isCopyToClipboard : true, text : 'magnet:?xt=urn:btih:' + hash}

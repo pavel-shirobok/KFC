@@ -1,9 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "Качать заблокированные раздачи с Kinozal.tv",
+  "name": "Качай заблокированные раздачи с Kinozal.tv",
   "version": "0.1",
   "description": "Скачивай заблокированные раздачи с сайта Kinozal.tv",
-
+  "icons":{
+    "512":"img/icon512.png"
+  },
   "permissions" : [ "tabs", "notifications", "http://*/*", "https://*/*" ],
 
   "background" : {

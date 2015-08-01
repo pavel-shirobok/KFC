@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var coffee = require('gulp-coffee');
 var watch = require('gulp-watch');
 var stylus = require('gulp-stylus');
+var zip = require('gulp-zip');
 
 var JS = [
     'src/coffee/**/*.coffee'
@@ -75,3 +76,10 @@ gulp.task('kfr:watch', function(){
     gulp.start('kfr:libs');
 
 });
+
+gulp.task('deploy', function(){
+        var manifest = require('./src/manifest.json')
+        gulp.src('build/**/*').
+            pipe(zip('build_v' + manifest.version + '.zip')).
+            pipe(gulp.dest('./builds/'));
+    });

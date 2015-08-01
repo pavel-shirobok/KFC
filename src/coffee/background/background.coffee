@@ -35,6 +35,6 @@ showNotify  = (text)->
   chrome.notifications.create notifyID + '', {
     type    : 'basic'
     title   : 'Скопирована magnet-ссылка'
-    iconUrl : chrome.extension.getURL('img/notify_icon.png'),
+    iconUrl : chrome.extension.getURL('img/icon512.png'),
     message : text
   }
